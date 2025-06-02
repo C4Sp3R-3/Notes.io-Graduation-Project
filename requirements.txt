@@ -1,0 +1,11 @@
+eventlet
+flask
+flask-socketio
+flask-wtf
+mysql-connector-python
+python-dotenv
+pyodbc
+sqlalchemy
+requests
+PyJWT
+pymongo

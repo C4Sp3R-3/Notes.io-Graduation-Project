@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='content/reset-password.css') }}">
+</head>
+<body>
+  <main>
+  <div class="container">
+    <div class="form-container sign-in-container">
+      <form id="MFA-form" method="POST">
+        <h1>2FA</h1>
+        <span>Enter your 2FA code</span><br><br>
+        <input type="text" id="mfa-code" name="mfa-code" placeholder="6-digits code" class="form-control" required />
+
+        <div id="error-message" style="margin-top: 0.2rem; height: 0.5rem; visibility: hidden;"></div>
+        <br>
+
+        <button type="submit">Submit</button>
+      </form>
+      <p id="back-to-login" style="display: none;" class="back-to-login"><a href="/login">Back to Login</a></p>
+    </div>
+  </div>
+
+  <script src="/static/scripts/mfa.js"></script>
+</main>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <script src="/static/scripts/modernizr-2.6.2.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='content/layout.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='content/simple-image.css') }}">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg notes-navbar py-2">
+    <div class="container-fluid">
+        <div class="d-flex align-items-center">
+            <div class="d-md-none me-3 cursor-pointer" id="sidebar-toggle">
+                <i class="bi bi-list"></i>
+            </div>
+            <div  id="logo" class="d-flex align-items-center">
+                <img style="height: 2rem; object-fit: contain;" src="/static/logo.png"/>
+                <span class="fw-bold" style="font-size: 1.5rem;">otes.io</span>
+            </div>
+        </div>
+        <div class="d-flex align-items-center ms-auto"><h3>Guest View</h3></div>
+        
+
+        <div class="d-flex align-items-center ms-auto">
+            <div id="export-container" class="dropdown me-3" style="display: none;">
+  <button class="btn btn-light btn-outline-secondary btn-sm fw-semibold px-3 border-0 dropdown-toggle" 
+          type="button" id="exportDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+    Export
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="exportDropdown">
+    <li><a class="dropdown-item" href="#" onclick="exportAsHtml()">Export as HTML</a></li>
+    <li><a class="dropdown-item" href="#" onclick="exportAsMarkdown()">Export as Markdown</a></li>
+    <li><a class="dropdown-item" href="#" onclick="exportAsPdf()">Export as PDF</a></li>
+  </ul>
+</div>
+
+
+    </div>
+</nav>
+    <div class="col-md-9 col-lg-10 d-flex flex-column p-0" style="height: calc(100vh - 56px); overflow: hidden; background-color: white; width: 100%;">
+        <div class="notes-overlay" id="overlay"></div>
+
+        <!-- Scrollable Editor Container -->
+        <div class="flex-grow-1 overflow-auto" style="width: 100%;">
+            <div class="container py-4" style="max-width: 900px;">
+                <center>
+                    <input id="note-title" type="text" placeholder="Title..." class="note-title-input mb-3" />
+                </center>
+                <br>
+                <div id="editor" class="container w-100" style="min-height: 100%;"></div>
+            </div>
+        </div>
+    </div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/static/scripts/editorjsInterop.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/&#64;editorjs/editorjs@2.30.8/dist/editorjs.umd.min.js"></script>
+<script src="/static/scripts/simple-image.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/&#64;editorjs/image@2.8.1/dist/bundle.min.js"></script>
+<link href="static/content/simple-image.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/&#64;editorjs/header@latest"></script>
+<script src="/static/scripts/delimiter.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/editorjs-toggle-block"></script>
+<script src="https://cdn.jsdelivr.net/npm/editorjs-paragraph-with-alignment@3.0.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/&#64;editorjs/list@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/&#64;editorjs/link@latest"></script>
+<script src="https://cdn.jsdelivr.net/npm/editorjs-mermaid@latest"></script>
+<script src="https://cdn.jsdelivr.net/npm/&#64;editorjs/table@latest"></script>
+<script src="https://cdn.jsdelivr.net/npm/&#64;editorjs/inline-code@latest"></script>
+<script src="https://cdn.jsdelivr.net/npm/&#64;editorjs/underline@latest"></script>
+<script src="https://cdn.jsdelivr.net/npm/editorjs-style@latest"></script>
+<script src="https://cdn.jsdelivr.net/npm/editorjs-text-color-plugin@2.0.3/dist/bundle.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/editorjs-undo"></script>
+<script src="https://cdn.jsdelivr.net/npm/editorjs-parser@1/build/Parser.browser.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script src="/static/scripts/export.js"></script>
+<script>
+    window.editorjsInterop.init('{{ saved_json | safe }}');
+    
+    const titleInput = document.getElementById("note-title");
+    titleInput.value = '{{title}}';
+
+    console.log("? savedJson:", '{{ saved_json | safe }}');
+</script>   
+<script>
+        document.getElementById("logo").style.cursor="pointer";
+        document.getElementById("logo").addEventListener("click",()=>{   
+            window.location.href = "/"   
+        })
+</script>
+</body>
+</html>

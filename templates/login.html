@@ -1,0 +1,55 @@
+<html>
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" href="/static/content/login.css">
+</head>
+<body>
+    <div class="container" id="container">
+        <div class="form-container sign-up-container">
+            <form action="/register" method="POST">
+                <h1>Create Account</h1>
+                <input type="text" name="username" id="register_username" placeholder="Username" />
+                <input type="email" name="email" id="register_email" placeholder="Email" />
+                <input type="password" name="password" id="register_password" placeholder="Password" />
+                <button type="submit" class="form-button">Sign Up</button>
+            </form>
+        </div>
+        <div class="form-container sign-in-container">
+            <form action="/login" method="POST">
+                <h1>Sign in</h1>
+                <input type="text" name="username_or_email" id="username_or_email" placeholder="Username or Email" />
+                <input type="password" name="password" id="password" placeholder="Password" />
+                <p class="forgot-password" id="forgot-password">Forgot your password?</p>
+                <button type="submit" class="form-button">Sign In</button>
+            </form>
+        </div>
+        <!-- Reset Password container -->
+        <div class="form-container reset-password-container">
+            <form id="reset-form">
+                <h1>Reset Password</h1>
+                <input type="text" placeholder="Email or Username" name="username_or_email" />
+                <div id="response-message" style="margin-top: 0.2rem; height: 0.5rem; visibility: hidden;"></div>
+                <button type="submit" class="form-button">Send Reset Link</button>
+                <p class="back-to-login">Back to Login</p>
+            </form>
+        </div>
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <h1>Welcome Back!</h1>
+                    <p>To keep connected with us please login with your personal info</p>
+                    <button class="ghost" id="signIn">Sign In</button>
+                </div>
+                <div class="overlay-panel overlay-right">
+                    <h1>Hello, Friend!</h1>
+                    <p>Enter your personal details and start journey with us</p>
+                    <button class="ghost" id="signUp">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/scripts/login.js"></script>
+    <script src="/static/scripts/sendResetLink.js"></script>
+</body>
+</html>

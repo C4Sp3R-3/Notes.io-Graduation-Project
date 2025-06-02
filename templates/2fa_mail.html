@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>MFA Code</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 6px;
+      max-width: 600px;
+      margin: auto;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }
+    h2 {
+      color: #333333;
+    }
+    p {
+      color: #555555;
+    }
+    .code-box {
+      font-size: 24px;
+      font-weight: bold;
+      color: #2c3e50;
+      background-color: #ecf0f1;
+      padding: 10px 20px;
+      border-radius: 6px;
+      text-align: center;
+      margin: 20px 0;
+      letter-spacing: 3px;
+    }
+    .footer {
+      font-size: 12px;
+      color: #999999;
+      margin-top: 20px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Hello {{username}},</h2>
+    <p>Your multi-factor authentication (MFA) code is:</p>
+    <div class="code-box">{{otp_secret}}</div>
+    <p>Do not share this code with anyone.</p>
+    <p>If you did not request this code, please ignore this message.</p>
+    <p>Best regards,<br>Notes.io Security Team</p>
+    <div class="footer">
+      © 2025 Notes.io. All rights reserved.
+    </div>
+  </div>
+</body>
+</html>

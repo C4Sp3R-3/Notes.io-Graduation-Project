@@ -1,0 +1,86 @@
+<nav class="navbar navbar-expand-lg notes-navbar py-2">
+    <div class="container-fluid">
+        <div class="d-flex align-items-center">
+            <div class="d-md-none me-3 cursor-pointer" id="sidebar-toggle">
+                <i class="bi bi-list"></i>
+            </div>
+            <div id="logo" class="d-flex align-items-center">
+                <img style="height: 2rem; object-fit: contain;" src="/static/logo.png" />
+                <span class="fw-bold" style="font-size: 1.5rem;">otes.io</span>
+            </div>
+        </div>
+
+        <div class="d-flex align-items-center ms-auto">
+            <div id="export-container" class="dropdown me-3" style="display: none;">
+                <button class="btn btn-light btn-outline-secondary btn-sm fw-semibold px-3 border-0 dropdown-toggle"
+                    type="button" id="exportDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    Export
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="exportDropdown">
+                    <li><a class="dropdown-item" onclick="exportAsHtml()">Export as HTML</a></li>
+                    <li><a class="dropdown-item" onclick="exportAsMarkdown()">Export as Markdown</a></li>
+                    <li><a class="dropdown-item" onclick="exportAsPdf()">Export as PDF</a></li>
+                    <hr>
+                    <li style="font-size: medium; margin-left: 1rem;">
+                        <span>Public:  </span>
+                        <label style="margin-left: 2rem; margin-bottom: 0.7rem;" class="switch">
+                            <input type="checkbox" id="publicRead" style="margin-left: 2rem;"
+                                onchange="window.notePublicity = this.checked; startAutoSaveTimer();"
+                                ${window.notePublicity ? 'checked' : ''}>
+                            <span class="slider"></span>
+                        </label>
+                    </li>
+                    <li>
+                        <button id="copyPublicUrlBtn" class="btn btn-sm btn-outline-primary ms-2" style="display: none;" type="button" onclick="copyPublicUrlToClipboard()">Copy URL to clipboard</button>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="d-flex align-items-center ms-auto">
+                <div class="d-flex align-items-center">
+                    <div class="dropdown">
+                        <div class="notes-user-menu d-flex align-items-center justify-content-center"
+                            id="userMenuDropdown"
+                            style="cursor: pointer;">
+                            <i class="bi bi-person"></i>
+                        </div>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userMenuDropdown">
+                            <li><a class="dropdown-item" href="/settings">Settings</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item text-danger" href="/logout">Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<script>
+    document.getElementById("logo").style.cursor = "pointer";
+    document.getElementById("logo").addEventListener("click", () => {
+        window.location.href = "/";
+    });
+
+    window.setPublicReadChecked = function (value) {
+        document.getElementById("publicRead").checked = !!value;
+    };
+</script>
+
+<script>
+    function updateCopyButtonVisibility() {
+        const isChecked = document.getElementById("publicRead").checked;
+        document.getElementById("copyPublicUrlBtn").style.display = isChecked ? "inline-block" : "none";
+    }
+
+    document.getElementById("publicRead").addEventListener("change", updateCopyButtonVisibility);
+    window.addEventListener("DOMContentLoaded", updateCopyButtonVisibility);
+
+    function copyPublicUrlToClipboard() {
+        // Replace with your actual public URL logic if needed
+        const url = window.location.origin + "/shared/" + (window.note_id || "");
+        navigator.clipboard.writeText(url).then(() => {
+            // Optionally show feedback
+        });
+    }
+</script>

@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+
+{% block contentarea %}
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Settings</h1>
+    </div>
+
+    <h2>User Profile</h2>
+    <p>Welcome, {{ user_data.username }}!</p>
+    
+    <!-- Add settings form or options here -->
+    <form>
+        <div class="mb-3">
+            <label for="usernameInput" class="form-label">Username</label>
+            <input type="text" class="form-control" id="usernameInput" value="{{ user_data.username }}">
+        </div>
+        <div class="mb-3">
+            <label for="emailInput" class="form-label">Email address</label>
+            <input type="email" class="form-control" id="emailInput" value="{{ user_data.email if user_data else 'N/A' }}">
+        </div>
+        
+        <button id="saveButton" class="btn btn-primary">Save Settings</button>
+
+        <hr>
+        
+        <h3>Security</h3>
+        <div class="mb-3">
+             <label class="form-label">Two-Factor Authentication (2FA)</label>
+             <p id="statusText">Status: {% if user_data and user_data.is_mfa_enabled %}Enabled{% else %}Disabled{% endif %}</p>
+             <label class="switch">
+                <input type="checkbox" id="toggleSwitch" {% if user_data and user_data.is_mfa_enabled %}checked{% endif %}>
+
+                <span class="slider"></span>
+            </label>
+        </div>
+    </form>
+
+</main>
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+<script src="/static/scripts/settings.js"></script>
+{% endblock %}
+

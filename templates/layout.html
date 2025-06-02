@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <script src="/static/scripts/modernizr-2.6.2.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='content/layout.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='content/settings.css') }}">
+</head>
+
+<body>
+    <!-- Top Navigation -->
+    {% include "TopNav.html" %}
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            {% include "Sidebar.html" %}
+            <!-- Content Area -->
+            {% block contentarea %}{% endblock %}
+        </div>
+    </div>
+
+    <script src="/static/scripts/layout.js"></script>
+    <script src="/static/scripts/jquery-1.10.2.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/scripts/respond.js"></script>
+    <script src="/static/scripts/load-notes-list.js"></script>
+    <script src="/static/scripts/create-note.js"></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>

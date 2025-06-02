@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Editor Test</title>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/header@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/paragraph@latest"></script>
+</head>
+<body>
+    <div id="editor"></div>
+    <script>
+    const savedJson = {{ saved_json | tojson | safe }};
+    console.log("Saved JSON:", savedJson);
+
+    new EditorJS({
+      holder: 'editor',
+      data: savedJson,
+      tools: {
+        header: { class: Header, inlineToolbar: true },
+        paragraph: { class: Paragraph, inlineToolbar: true }
+      }
+    });
+    </script>
+</body>
+</html>

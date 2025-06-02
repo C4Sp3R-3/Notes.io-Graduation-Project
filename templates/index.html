@@ -1,0 +1,44 @@
+{% extends "ContentArea.html" %}
+{% block content %}
+<!-- Editor.js Container -->
+<center>
+    <input id="note-title" type="text" placeholder="Title..." class="note-title-input mb-3" />
+</center>
+<br>
+<div id="editor" class="container w-100" style="min-height: 100%;"></div>
+{% endblock %}
+
+{% block scripts %}
+<script src="/static/scripts/editorjsInterop.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/&#64;editorjs/editorjs@2.30.8/dist/editorjs.umd.min.js"></script>
+<script src="/static/scripts/simple-image.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/&#64;editorjs/image@2.8.1/dist/bundle.min.js"></script>
+<link href="static/content/simple-image.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/&#64;editorjs/header@latest"></script>
+<script src="/static/scripts/delimiter.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/editorjs-toggle-block"></script>
+<script src="https://cdn.jsdelivr.net/npm/editorjs-paragraph-with-alignment@3.0.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/&#64;editorjs/list@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/&#64;editorjs/link@latest"></script>
+<script src="https://cdn.jsdelivr.net/npm/editorjs-mermaid@latest"></script>
+<script src="https://cdn.jsdelivr.net/npm/&#64;editorjs/table@latest"></script>
+<script src="https://cdn.jsdelivr.net/npm/&#64;editorjs/inline-code@latest"></script>
+<script src="https://cdn.jsdelivr.net/npm/&#64;editorjs/underline@latest"></script>
+<script src="https://cdn.jsdelivr.net/npm/editorjs-style@latest"></script>
+<script src="https://cdn.jsdelivr.net/npm/editorjs-text-color-plugin@2.0.3/dist/bundle.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/editorjs-undo"></script>
+<script src="https://cdn.jsdelivr.net/npm/editorjs-parser@1/build/Parser.browser.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script src="/static/scripts/update-note.js"></script>
+<script src="/static/scripts/export.js"></script>
+<script>
+    window.editorjsInterop.init('{{ saved_json | safe }}');
+    
+    const titleInput = document.getElementById("note-title");
+    titleInput.value = '{{title}}';
+    window.notePublicity = String('{{PublicRead}}').toLowerCase() === 'true';
+    setPublicReadChecked(window.notePublicity);
+
+    console.log("? savedJson:", '{{ saved_json | safe }}');
+</script>
+{% endblock %}
