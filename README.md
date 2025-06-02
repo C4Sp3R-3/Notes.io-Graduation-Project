@@ -1,5 +1,4 @@
 # Notes.io-Graduation-Project
-![Image](http://localhost:5000/static/logo.png)
 
 ## Overview
 
